@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
+*.pyo
 
 # C extensions
 *.so
@@ -169,3 +171,18 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Ambienti virtuali
+venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+
+# File CSV e dati
+*.csv
+
+# Cartelle
+dati/
+eseguibili/
