@@ -46,4 +46,4 @@ class AlphaBetaEngine:
 
     def play(self, board, limit=None):
         _, move = self.alpha_beta(board, self.depth, float('-inf'), float('inf'), board.turn == chess.WHITE)
-        return chess.engine.PlayResult(move=move)
+        return chess.engine.PlayResult(move=move, ponder=None)
