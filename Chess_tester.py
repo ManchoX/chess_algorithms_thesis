@@ -7,8 +7,8 @@ from minimax_engine import MinimaxEngine
 from alphabeta_engine import AlphaBetaEngine
 
 #Creazione delle variabili engine_path. Queste prendono il percorso dell'eseguibile scaricato
-Engine1path = r"eseguibili\Houdini\Houdini_15a_x64.exe"
-Engine2path = r"eseguibili\critter\Critter_1.6a_64bit.exe"
+Engine1path = r"eseguibili\critter_1.6a_win\Critter_1.6a_64bit.exe"
+Engine2path = r"eseguibili\stockfish\stockfish-windows-x86-64-modern.exe"
 Engine1 = chess.engine.SimpleEngine.popen_uci(Engine1path)
 Engine2 = chess.engine.SimpleEngine.popen_uci(Engine2path)
 
