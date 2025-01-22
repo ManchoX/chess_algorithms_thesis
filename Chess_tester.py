@@ -7,14 +7,16 @@ from minimax_engine import MinimaxEngine
 from alphabeta_engine import AlphaBetaEngine
 
 #Creazione delle variabili engine_path. Queste prendono il percorso dell'eseguibile scaricato
-stockfish_faster_path = r"stockfish-windows-x86-64-avx2\stockfish\stockfish-windows-x86-64-avx2.exe"
-stockfish_moreCompatible_path = r"stockfish-windows-x86-64-sse41-popcnt\stockfish\stockfish-windows-x86-64-sse41-popcnt.exe"
+Engine1path = r"eseguibili\Houdini\Houdini_15a_x64.exe"
+Engine2path = r"eseguibili\critter\Critter_1.6a_64bit.exe"
+Engine1 = chess.engine.SimpleEngine.popen_uci(Engine1path)
+Engine2 = chess.engine.SimpleEngine.popen_uci(Engine2path)
 
 #Usando la libreria "Chess engine" vengono create le variabili con l'engine al loro interno
 #Engine1 = chess.engine.SimpleEngine.popen_uci(stockfish_faster_path)
 #Engine2 = chess.engine.SimpleEngine.popen_uci(stockfish_moreCompatible_path)
-Engine1 = MinimaxEngine(depth=6)
-Engine2 = AlphaBetaEngine(depth=6)
+Algo1 = MinimaxEngine(depth=5)
+Algo2 = AlphaBetaEngine(depth=5)
 
 #Qui viene invece richiesto l'inserimento del limite di tempo per ogni mossa,
 #il numero di partite da giocare e come vengono definiti i possibili risultati
@@ -27,17 +29,26 @@ results = {"1-0": 0, "0-1": 0, "1/2-1/2": 0}
 #Viene creata poi la scacchiera e viene definito il turno al valore 0
 #Poi, fino a che il gioco non sarà finito (per vittoria di uno dei 2 o pareggio), viene eseguito il comando "play".
 #Questo salva le mosse in uno stack (che verrà passato fuori con il return) e aggiorna il turno ogni volta.
+# def play_game(engine1, engine2):
+#     board = chess.Board()
+#     engines = [engine1, engine2]
+#     turn = 0
+#     while not board.is_game_over():
+#         if isinstance(engines[turn], chess.engine.SimpleEngine):
+#             result = engines[turn].play(board, chess.engine.Limit(time=time_limit))
+#             move = result.move
+#         else:
+#             move = engines[turn].play(board).move  # Per gli algoritmi Python
+#         board.push(move)
+#         turn = 1 - turn
+#     return [board.result(), len(board.move_stack)]
 def play_game(engine1, engine2):
     board = chess.Board()
     engines = [engine1, engine2]
     turn = 0
     while not board.is_game_over():
-        if isinstance(engines[turn], chess.engine.SimpleEngine):
-            result = engines[turn].play(board, chess.engine.Limit(time=time_limit))
-            move = result.move
-        else:
-            move = engines[turn].play(board).move  # Per gli algoritmi Python
-        board.push(move)
+        result = engines[turn].play(board, chess.engine.Limit(time=time_limit))
+        board.push(result.move)
         turn = 1 - turn
     return [board.result(), len(board.move_stack)]
 
