@@ -74,8 +74,6 @@ with open('dati.csv', mode='a', newline='') as file:
     #Ora vengono scritti i totali delle partite (dopo aver lasciato uno spazio)
     writer.writerow([])
 
-    writer.writerow([f"VB: {results['1-0']}", f"VN: {results['0-1']}", f"Draws: {results['1/2-1/2']}"])
-
     writer.writerow("")
     
 #Chiusura degli engine
